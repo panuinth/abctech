@@ -25,6 +25,7 @@ end
 
 gem 'jquery-rails'
 group :development, :test do
+  gem 'rspec-html-matchers'
   gem 'rspec-rails'
   gem 'guard-rspec'
 end

@@ -8,10 +8,21 @@ class Candidate
 
   attr_accessor :name, :age, :gender
 
-  validates :name, :age, :gender, :presence => true
+  validates_presence_of :name, :age, :gender
 
   def initialize(attr = {})
     self.name, self.age, self.gender = attr[:name], attr[:age], attr[:gender]
+  end
+
+  def save
+    if valid?
+      payload = { :name => name, :age => age, :gender => gender }
+      response = post('/save/candidate.json', :body => payload.to_json, :headers => {"Content-Type" => "application/json"}).parsed_response
+
+      return response
+    else
+      false
+    end
   end
 
   class << self
@@ -27,16 +38,6 @@ class Candidate
 
   end
 
-  def save
-    if valid?
-      payload = { :name => name, :age => age, :gender => gender }
-      response = post('/save/candidate.json', :body => payload.to_json, :headers => {"Content-Type" => "application/json"}).parsed_response
-      return response
-    else
-      false
-    end
-  end
-
   private
 
   def get(method, opts={})
@@ -46,7 +47,7 @@ class Candidate
       raise "ABC tech candidate didn't respond in time"
     end
 
-    response['code'] == 200 ? response = response.parsed_response : response = response.parsed_response["errorMessage"]
+    response["code"] == 200 ? response = response.parsed_response : response = response.parsed_response["errorMessage"]
     return response
   end
 
@@ -57,18 +58,19 @@ class Candidate
       raise "ABC tech candidate didn't respond in time"
     end
 
-    response['code'] == 200 ? response = response.parsed_response : response = response.parsed_response["errorMessage"]
+    response.code == 200 ? response = response : response = response.message
+    return response
   end
 
   def put(method, opts={})
     begin
-      response = self.class.post(method, opts)
+      response = self.class.put(method, opts)
     rescue Timeout::Error
       raise "ABC tech candidate didn't respond in time"
     end
 
-    response['code'] == 200 ? response = response.parsed_response : response = response.parsed_response["errorMessage"]
+    response["code"] == 200 ? response = response.parsed_response : response = response.parsed_response["errorMessage"]
+    return response
   end
-
 
 end
