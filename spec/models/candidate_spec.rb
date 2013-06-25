@@ -38,7 +38,6 @@ describe Candidate do
   it "should get new image after uploading photo" do
     Candidate.upload_picture(:uuid => @uuid)
     Nokogiri::HTML(open("http://siam.dev.abctech-thailand.com/candidate/view.html?uuid=#{@uuid}")).css("img")[0]["src"].should match "#{@uuid}.png"
-
   end
 
 end

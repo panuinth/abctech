@@ -1,4 +1,8 @@
 Abctech::Application.routes.draw do
+  root :to => "candidates#index"
+  get '/candidates/show' => 'candidates#show'
+  get '/candidates/load' => 'candidates#load'
+  get '/candidates/new' => 'candidates#new'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

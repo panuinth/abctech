@@ -27,7 +27,7 @@ class Candidate
 
   class << self
     def load(uuid)
-      response = get("/load/#{uuid}.json").parsed_response
+      response = get("/load/#{uuid}.json").parsed_response if uuid
     end
 
     def upload_picture(attr = {})
@@ -35,6 +35,11 @@ class Candidate
       payload = { :uuid => attr[:uuid], :imageBase64 => b }
       response = put("/upload/image/#{attr[:uuid]}.json", :body => payload.to_json, :headers => {"Content-Type" => "application/json"}).parsed_response
     end
+
+    def view_link(uuid)
+      "http://siam.dev.abctech-thailand.com/candidate/view.html?uuid=#{uuid}" if uuid
+    end
+
 
   end
 

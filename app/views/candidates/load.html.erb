@@ -1,0 +1,15 @@
+<div class="hero-unit">
+  <h2>UUID <%= @candidate["uuid"]%></h2>
+  <% if @notice %>
+    <div class="alert alert-success">
+      <%= @notice %>
+  </div>
+  <% end %>
+  <p>Name: <%=@candidate.name%></p>
+  <p>Age: <%=@candidate.age%></p>
+  <p>Gender: <%=@candidate.gender%></p>
+  <p>View URL: <a href="<%= @candidate%>">link</a></p>
+
+</div>
+
+
