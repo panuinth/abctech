@@ -9,3 +9,10 @@ Technologies
 - Twitter Boostrap
 - Candidate's API from ABC Tech: http://siam.dev.abctech-thailand.com/candidate/
 
+Installation
+1. run "bundle" in rails root path
+2. run "rails server" to start server
+3. Open browser and go to "http://localhost:3000"
+
+Unit test
+1. run "rspec" in rails root path
