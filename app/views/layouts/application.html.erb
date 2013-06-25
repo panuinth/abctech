@@ -4,6 +4,9 @@
   <title>Candidate app</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery.validate.js" %>
+
+
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -18,8 +21,9 @@
         <a class="brand" href="/">ABC Tech</a>
         <div class="nav-collapse">
           <ul class="nav">
+            <li><%= link_to "Load candidate", root_path %></li>
             <li><%= link_to "New candidate", candidates_new_path %></li>
-            <li><%= link_to "Upload picture", candidates_new_path %></li>
+            <li><%= link_to "Upload picture", candidates_upload_picture_path %></li>
           </ul>
         </div>
       </div>

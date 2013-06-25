@@ -6,18 +6,19 @@ class Candidate
   base_uri 'http://siam.dev.abctech-thailand.com/candidate/rest/candidateService/'
   format :json
 
-  attr_accessor :name, :age, :gender
+  attr_accessor :name, :age, :gender, :uuid
 
   validates_presence_of :name, :age, :gender
 
   def initialize(attr = {})
-    self.name, self.age, self.gender = attr[:name], attr[:age], attr[:gender]
+    self.name, self.age, self.gender, self.uuid = attr[:name], attr[:age], attr[:gender], attr[:uuid]
   end
 
   def save
     if valid?
       payload = { :name => name, :age => age, :gender => gender }
-      response = post('/save/candidate.json', :body => payload.to_json, :headers => {"Content-Type" => "application/json"}).parsed_response
+      response = post('/save.json', :body => payload.to_json, :headers => {"Content-Type" => "application/json"}).parsed_response
+      self.uuid = response["uuid"]
 
       return response
     else
@@ -31,8 +32,8 @@ class Candidate
     end
 
     def upload_picture(attr = {})
-      b = Base64.encode64(File.open('/Users/panuausavasereelert/panu.jpg').read)
-      payload = { :uuid => attr[:uuid], :imageBase64 => b }
+      picture = Base64.encode64(File.open(attr[:imageBase64]).read)
+      payload = { :uuid => attr[:uuid], :imageBase64 => picture }
       response = put("/upload/image/#{attr[:uuid]}.json", :body => payload.to_json, :headers => {"Content-Type" => "application/json"}).parsed_response
     end
 
@@ -62,6 +63,9 @@ class Candidate
     rescue Timeout::Error
       raise "ABC tech candidate didn't respond in time"
     end
+
+    return response
+
 
     response.code == 200 ? response = response : response = response.message
     return response

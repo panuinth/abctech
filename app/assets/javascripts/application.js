@@ -14,3 +14,40 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+$(function() {
+  $("#search").validate({
+    rules:{
+      uuid:"required"
+    },
+    errorClass: "help-inline"
+  });
+
+  $("#signup").validate({
+    rules:{
+      name:"required",
+      age: {
+        required:true,
+        digits: true
+      },
+      gender:"required"
+    },
+    errorClass: "help-inline"
+  });
+
+   $("#upload-picture").validate({
+    rules:{
+      uuid:"required",
+      fileupload:"required"
+    },
+    errorClass: "help-inline"
+  });
+
+  $("button.btn-gender").click(function() {
+    if ($(this).text() == "Male"){
+      $("#sex").val("M");
+    }else {
+      $("#sex").val("F");
+    }
+  });
+
+});

@@ -1,0 +1,42 @@
+<div class="container">
+
+  <div class="well">    
+    <form id="signup" class="form-horizontal" method="post" action="/candidates/create">
+      <legend><h2>New Candidate</h2></legend>
+      <div class="control-group">
+        <label class="control-label control-label-new">Name</label>
+        <div class="controls controls-new">
+          <div class="input-prepend">
+            <input type="text" class="input input-large-new" id="name" name="name" placeholder="Ryan Bates">
+          </div>
+        </div>
+      </div>
+      <div class="control-group ">
+        <label class="control-label control-label-new">Age</label>
+        <div class="controls controls-new">
+          <div class="input-prepend">
+            <input type="text" class="input input-large-new" id="age" name="age" placeholder="23">
+          </div>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label control-label-new">Gender</label>
+        <input type="hidden" id="sex" name="gender" value="" />
+        <div class="controls controls-new">
+          <p>
+          <div id="gender" name="gender" class="btn-group" data-toggle="buttons-radio">
+            <button type="button" class="btn btn-large btn-info btn-gender">Male</button>
+            <button type="button" class="btn btn-large btn-info btn-gender">Female</button>
+          </div>
+          </p>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls controls-center">
+          <button type="submit" class="btn btn-large btn-success" rel="tooltip" title="first tooltip">Create New Candidate</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
