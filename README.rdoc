@@ -6,7 +6,7 @@ Technologies
 - Rails 3.2.13
 - Rspec (unit test)
 - RVM
-- Twitter Boostrap
+- Twitter Bootstrap
 - Candidate's API from ABC Tech: http://siam.dev.abctech-thailand.com/candidate/
 
 Installation
