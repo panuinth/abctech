@@ -1,6 +1,10 @@
 <div class="container">
-
-  <div class="well">    
+  <div class="well">
+    <% if flash[:notice] %>
+      <div class="alert alert-error">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>    
     <form id="upload-picture" class="form-horizontal" method="post" action="/candidates/update_picture" enctype="multipart/form-data">
       <legend><h2>Upload Picture</h2></legend>
       <div class="control-group">
@@ -30,5 +34,3 @@
 </form>
   </div>
 </div>
-
-
